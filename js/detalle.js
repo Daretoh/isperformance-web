@@ -150,13 +150,13 @@ function abrirModalCarrito() {
     const tot  = its.reduce((s, i) => s + (i.precio || 0) * (i.qty || 1), 0);
 
     const msg = encodeURIComponent(
-      `*Solicitud de instalación — ISperformance*\n\n` +
-      `👤 Nombre: ${nombre}\n` +
-      `📱 Teléfono: ${telefono}\n` +
-      `🚗 Vehículo: ${vehiculo}\n\n` +
+      `*Solicitud de instalacion - ISperformance*\n\n` +
+      `Nombre: ${nombre}\n` +
+      `Telefono: ${telefono}\n` +
+      `Vehiculo: ${vehiculo}\n\n` +
       `*Productos:*\n${prod}\n\n` +
-      `💰 Total referencial: ${formatCLP(tot)}\n` +
-      (nota ? `\n📝 Consulta: ${nota}` : '')
+      `Total referencial: ${formatCLP(tot)}` +
+      (nota ? `\n\nConsulta: ${nota}` : '')
     );
 
     window.open(`https://wa.me/56985615636?text=${msg}`, '_blank');
