@@ -149,14 +149,15 @@ function abrirModalCarrito() {
     const prod = its.map(i => `• ${i.nombre} x${i.qty}${i.precio ? ' (' + formatCLP(i.precio * i.qty) + ')' : ''}`).join('\n');
     const tot  = its.reduce((s, i) => s + (i.precio || 0) * (i.qty || 1), 0);
 
+    const wa = (emoji) => emoji;
     const msg = encodeURIComponent(
-      `*Solicitud de instalacion - ISperformance*\n\n` +
-      `Nombre: ${nombre}\n` +
-      `Telefono: ${telefono}\n` +
-      `Vehiculo: ${vehiculo}\n\n` +
-      `*Productos:*\n${prod}\n\n` +
-      `Total referencial: ${formatCLP(tot)}` +
-      (nota ? `\n\nConsulta: ${nota}` : '')
+      `\u{1F3CE} *Solicitud de instalación — ISperformance*\n\n` +
+      `\u{1F464} *Nombre:* ${nombre}\n` +
+      `\u{1F4F1} *Teléfono:* ${telefono}\n` +
+      `\u{1F697} *Vehículo:* ${vehiculo}\n\n` +
+      `\u{1F6CD} *Productos:*\n${prod}\n\n` +
+      `\u{1F4B0} *Total referencial:* ${formatCLP(tot)}` +
+      (nota ? `\n\n\u{1F4DD} *Consulta:* ${nota}` : '')
     );
 
     window.open(`https://wa.me/56985615636?text=${msg}`, '_blank');
