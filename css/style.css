@@ -140,6 +140,13 @@ ul { list-style: none; }
   height: 72px;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
 .nav-cart-btn {
   position: relative;
   background: none;
@@ -3236,6 +3243,12 @@ ul { list-style: none; }
   gap: 10px;
 }
 .cart-modal-footer .btn { width: 100%; justify-content: center; text-align: center; }
+
+.cart-footer-ctas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
 .btn-secondary {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.15);
