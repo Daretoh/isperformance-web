@@ -3906,6 +3906,88 @@ ul { list-style: none; }
 }
 
 /* ========================================
+   CARRUSELES POR CATEGORÍA
+   ======================================== */
+.cat-carousel {
+  margin-bottom: 44px;
+}
+
+.cat-carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(255,107,0,0.12), rgba(255,107,0,0.03));
+  border-left: 4px solid var(--orange-500);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.cat-carousel-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cat-carousel-count {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+.cat-carousel-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,107,0,0.3) transparent;
+}
+
+.cat-carousel-scroll::-webkit-scrollbar {
+  height: 3px;
+}
+.cat-carousel-scroll::-webkit-scrollbar-track { background: transparent; }
+.cat-carousel-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,107,0,0.35);
+  border-radius: 2px;
+}
+
+/* Cards dentro del carrusel: ancho fijo */
+.cat-carousel-scroll .equipo-card {
+  flex: 0 0 240px;
+  scroll-snap-align: start;
+}
+
+.cat-carousel-scroll .equipo-card-img {
+  height: 155px;
+}
+
+/* Footer siempre en columna dentro del carrusel */
+.cat-carousel-scroll .equipo-card-footer {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.cat-carousel-scroll .equipo-card-precio {
+  font-size: 1.05rem;
+}
+
+.cat-carousel-scroll .btn-wa {
+  width: 100%;
+  justify-content: center;
+  padding: 7px 12px;
+  font-size: 0.78rem;
+}
+
+/* ========================================
    EQUIPOS GRID — CARDS MÁS COMPACTAS
    ======================================== */
 .equipo-card-img {
