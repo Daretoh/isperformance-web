@@ -23,6 +23,49 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  // ---- Lupa → volver al hero ----
+  const toHeroBtn = document.getElementById('nav-to-hero');
+  if (toHeroBtn) {
+    toHeroBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const input = document.getElementById('producto-buscar-texto');
+      if (input) {
+        setTimeout(() => {
+          const heroFiltro = document.getElementById('hero-marca');
+          if (heroFiltro) heroFiltro.focus();
+        }, 600);
+      }
+    });
+  }
+
+  // ---- Nav dropdown: categorías (scroll a carrusel) ----
+  document.querySelectorAll('[data-scroll-cat]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const cat = link.dataset.scrollCat;
+      const target = document.getElementById('cat-' + cat);
+      const equipos = document.getElementById('equipos');
+      if (equipos) equipos.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+      }
+      // Cerrar dropdown móvil
+      link.closest('.nav-has-dropdown')?.classList.remove('open');
+      document.getElementById('navLinks')?.classList.remove('open');
+      document.getElementById('menuToggle')?.classList.remove('active');
+    });
+  });
+
+  // ---- Dropdown móvil: toggle al tocar el link principal ----
+  document.querySelectorAll('.nav-has-dropdown > a').forEach(link => {
+    link.addEventListener('click', e => {
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) return;
+      e.preventDefault();
+      link.closest('.nav-has-dropdown').classList.toggle('open');
+    });
+  });
+
   // ---- Mobile Menu ----
   const toggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');

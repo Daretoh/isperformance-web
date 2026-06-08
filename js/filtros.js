@@ -163,8 +163,10 @@ document.addEventListener('DOMContentLoaded', async function () {
       const items = agrupado[cat];
       if (!items || !items.length) return;
 
+      const catId = 'cat-' + cat.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, '-');
+
       html += `
-        <div class="cat-carousel">
+        <div class="cat-carousel" id="${catId}">
           <div class="cat-carousel-header">
             <h3 class="cat-carousel-title">${cat}</h3>
             <span class="cat-carousel-count">${items.length} producto${items.length !== 1 ? 's' : ''}</span>
@@ -238,6 +240,37 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   poblarMarca();
   limpiarFiltros();
+
+  // ── Búsqueda por texto ──
+  const textInput = document.getElementById('producto-buscar-texto');
+  const textClear = document.getElementById('producto-buscar-clear');
+
+  if (textInput) {
+    textInput.addEventListener('input', function () {
+      const q = this.value.trim();
+      textClear.style.display = q ? 'block' : 'none';
+      if (!q) {
+        aplicarFiltros();
+        return;
+      }
+      const lc = q.toLowerCase();
+      const filtrados = productos.filter(p =>
+        p.nombre.toLowerCase().includes(lc) ||
+        (p.descripcion && p.descripcion.toLowerCase().includes(lc)) ||
+        (p.categoria && p.categoria.toLowerCase().includes(lc))
+      );
+      renderProductos(filtrados);
+    });
+
+    if (textClear) {
+      textClear.addEventListener('click', () => {
+        textInput.value = '';
+        textClear.style.display = 'none';
+        textInput.focus();
+        aplicarFiltros();
+      });
+    }
+  }
 
   // ── Hero filtro ──
   const heroMarcaEl  = document.getElementById('hero-marca');
